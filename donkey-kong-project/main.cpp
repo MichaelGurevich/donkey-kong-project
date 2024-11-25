@@ -1,11 +1,15 @@
 #include <iostream>
 using namespace std;
 
+#include "StaticObj.h"
+
 
 int main()
 {
 
-	cout << "Hello World!" << endl;
+	StaticObj st;
+
+
 	return 0;
 }
 
