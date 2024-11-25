@@ -11,7 +11,7 @@ int Position::getX()
 
 void Position::setX(int newX)
 {
-	x = x;
+	x = newX;
 }
 
 int Position::getY()
