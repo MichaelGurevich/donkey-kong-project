@@ -127,15 +127,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Board.cpp" />
+    <ClCompile Include="DonkeyKong.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Ladder.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="StaticObj.cpp" />
+    <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Board.h" />
+    <ClInclude Include="DonkeyKong.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Ladder.h" />
+    <ClInclude Include="Platform.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="StaticObj.h" />
+    <ClInclude Include="utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
