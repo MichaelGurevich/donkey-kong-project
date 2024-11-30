@@ -5,6 +5,13 @@ using namespace std;
 #include <string.h>
 
 
+
+StaticObj::StaticObj(Position p, char ch)
+{
+	pos = p;
+	symbol = ch;
+}
+
 void StaticObj::setSymbol(char ch)
 {
 	symbol = ch;
@@ -15,7 +22,7 @@ char StaticObj::getSymbol()
 	return symbol;
 }
 
-void StaticObj::printObj(int amount)
+void StaticObj::printObj(int amount) // this function should be uniqe to each child of StaticObj
 {
 	cout << std::string(amount, symbol);
 }
