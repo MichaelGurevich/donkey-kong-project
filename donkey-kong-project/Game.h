@@ -1,13 +1,15 @@
 #pragma once
 #include "StaticObj.h"
+#include "Board.h"
 
 
 class Game
 {
-	StaticObj* staticObjects; // array of all the static objects in the game
-
+	Board* board = nullptr; // all assets of the game
+	
 
 public:
+	Game(int height, int width, int level, int platformSpacing);
 	void start();
 	//void stop();
 	//void pause();

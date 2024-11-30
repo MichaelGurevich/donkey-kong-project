@@ -15,5 +15,3 @@ public:
 	void setHeight(int _height);
 	void printObj();
 };
-
-Ladder* createLadder(Platform* plat1, Platform* plat2, int ladderLen);

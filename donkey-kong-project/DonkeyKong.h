@@ -6,7 +6,6 @@
 class DonkeyKong : public StaticObj
 {
 
-
 public:
 	using StaticObj::StaticObj;
 	void throwBarrel();

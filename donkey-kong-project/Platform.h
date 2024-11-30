@@ -13,5 +13,3 @@ public:
 	
 };
 
-Platform* createPlatform(int platformY, int platformMaxLen);
-Platform* createPlatform(int platformY, int dir, int platformMaxLen, int randomPoint);

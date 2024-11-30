@@ -1,22 +1,13 @@
 #include <iostream>
-using namespace std;
-
-#include "StaticObj.h"
 #include "Game.h"
-#include <random>
-
-
-
 
 
 int main()
 {
-
-	//StaticObj st;
-	Game g;
+ 
+	Game g(25, 80, 6, 4);
 	g.start();
 	
-
 	return 0;
 }
 
