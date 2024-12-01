@@ -13,6 +13,15 @@ void gotoxy(Position p)
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
+void gotoxy(int x, int y)
+{
+    cout.flush();
+    COORD coord;
+    coord.X = x;
+    coord.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+
 int minVal(int a, int b)
 {
 	return  a <= b ? a : b;
@@ -33,3 +42,4 @@ int randomInt(int low, int high)
 
 	return random(rng);
 }
+
