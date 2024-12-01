@@ -5,20 +5,20 @@
 #include "DonkeyKong.h"
 
 // ##### Platforms #####
-Platform* createPlatform(int platformY, int platformMaxLen);
-Platform* createPlatform(int platformY, int dir, int platformMaxLen, int randomPoint);
+Platform* createPlatform(int platformY, int platformMaxLen, char* arr);
+Platform* createPlatform(int platformY, int dir, int platformMaxLen, int randomPoint, char* arr);
 bool createPlatformCheck(int x, int dir, int platformMaxLen, int platformMinLen);
-Platform** createPlatforms(int height, int platformsNum, int platformMaxLen, int platformSpacing);
+Platform** createPlatforms(int height, int platformsNum, int platformMaxLen, int platformSpacing, char** arr);
 
 
 // ##### Ladders ######
-Ladder* createLadder(Platform* plat1, Platform* plat2, int ladderLen);
-Ladder** createLadders(Platform**& platforms, int platformsNum, int platformSpacing);
+Ladder* createLadder(Platform* plat1, Platform* plat2, int ladderLen, char** arry);
+Ladder** createLadders(Platform**& platforms, int platformsNum, int platformSpacing, char** arry);
 
 
 // ##### Pauline #####
-StaticObj* createPauilne(Position lastPlatPos, int lastPlatLen);
+StaticObj* createPauilne(Position lastPlatPos, int lastPlatLen, char** arr);
 
 
 // ##### DonkeyKong #####
-DonkeyKong* createDonkeyKong(Position lastPlatPos, int lastPlatLen);
+DonkeyKong* createDonkeyKong(Position lastPlatPos, int lastPlatLen, char** arr);

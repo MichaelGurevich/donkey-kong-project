@@ -59,7 +59,22 @@ void Game::start()
 {
 
 
-	for (int i = 2; i <= 6; i++)
+	board = new Board(height, width, 5, platformSpacing);
+	for (int i = 0; i < height; i++)
+	{
+		for (int j = 0; j < width; j++)
+		{
+			gotoxy(j, i);
+			std::cout << board->array[i][j];
+		}
+		
+	}
+
+	while (!_kbhit())
+	{
+		Sleep(500);
+	}
+	/*for (int i = 2; i <= 6; i++)
 	{
 		board = new Board(height, width, i, platformSpacing);
  		while (!_kbhit())
@@ -69,5 +84,5 @@ void Game::start()
 		clearInputBuffer();
 		gotoxy(0, 0);
 		std::cout << clearCanvas;
-	}
+	}*/
 }

@@ -1,14 +1,14 @@
 #pragma once
 
 
-
 class Board
 {
 	int height;
 	int width;
-	char** array;
+	
 
 public:
+	char** array;
 	Board(int _height, int _width, int platformNum, int platformSpacing);
 	
 };

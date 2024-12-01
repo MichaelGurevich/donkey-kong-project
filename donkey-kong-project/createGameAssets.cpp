@@ -1,8 +1,9 @@
 #include "createGameAssests.h"
 #include "utils.h"
+#include "algorithm"
 
 
-Platform* createPlatform(int platformY, int platformMaxLen) {
+Platform* createPlatform(int platformY, int platformMaxLen, char* arr) {
 	int platformMinLen, platformLen, platformX;
 
 	platformMinLen = platformMaxLen / 2;
@@ -11,10 +12,17 @@ Platform* createPlatform(int platformY, int platformMaxLen) {
 	Position platPos(platformX, platformY);
 	Platform* plat = new Platform(platPos, '=', platformLen);
 
+
+	for (int i = platformX; i < platformX + platformLen; i++) {
+		arr[i] = '=';
+	}
+	//std::fill(arr + platformX, arr + platformLen, '=');
+
+
 	return plat;
 }
 
-Platform* createPlatform(int platformY, int dir, int platformMaxLen, int randomPoint)
+Platform* createPlatform(int platformY, int dir, int platformMaxLen, int randomPoint, char* arr)
 {
 	int platformLen, platformX, platformMinLen;
 	platformMinLen = platformMaxLen / 2;
@@ -34,6 +42,11 @@ Platform* createPlatform(int platformY, int dir, int platformMaxLen, int randomP
 	Position platPos(platformX, platformY);
 	Platform* plat = new Platform(platPos, symbol, platformLen);
 
+	for (int i = platformX; i < platformX + platformLen; i++) {
+		arr[i] = symbol;
+	}
+	// std::fill(arr + platformX, arr + platformLen, symbol);
+
 	return plat;
 }
 
@@ -46,7 +59,7 @@ bool createPlatformCheck(int x, int dir, int platformMaxLen, int platformMinLen)
 	return platformMaxLen - x >= platformMinLen ? true : false;
 }
 
-Platform** createPlatforms(int height, int platformsNum, int platformMaxLen, int platformSpacing)
+Platform** createPlatforms(int height, int platformsNum, int platformMaxLen, int platformSpacing, char** arr)
 {
 	Platform** platforms = new Platform * [platformsNum];
 	Platform* plat = nullptr;
@@ -70,37 +83,37 @@ Platform** createPlatforms(int height, int platformsNum, int platformMaxLen, int
 			{
 				if (createPlatformCheck(randomPoint, dirPriority, platformMaxLen, platformMinLen))
 				{
-					plat = createPlatform(platformY, 0, platformMaxLen, randomPoint);
+					plat = createPlatform(platformY, 0, platformMaxLen, randomPoint, arr[platformY]);
 				}
 				else {
 
-					plat = createPlatform(platformY, 1, platformMaxLen, randomPoint);
+					plat = createPlatform(platformY, 1, platformMaxLen, randomPoint, arr[platformY]);
 				}
 			}
 			else {
 				if (createPlatformCheck(randomPoint, dirPriority, platformMaxLen, platformMinLen))
 				{
-					plat = createPlatform(platformY, 1, platformMaxLen, randomPoint);
+					plat = createPlatform(platformY, 1, platformMaxLen, randomPoint, arr[platformY]);
 				}
 				else {
-					plat = createPlatform(platformY, 0, platformMaxLen, randomPoint);
+					plat = createPlatform(platformY, 0, platformMaxLen, randomPoint, arr[platformY]);
 				}
 			}
 
 
 		}
 		else {
-			plat = createPlatform(platformY, platformMaxLen);
+			plat = createPlatform(platformY, platformMaxLen, arr[platformY]);
 		}
 		platforms[i] = plat;
 		gotoxy(plat->getPosition());
-		plat->printObj(plat->getLen());
+		//plat->printObj(plat->getLen());
 	}
 
 	return platforms;
 }
 
-Ladder* createLadder(Platform* plat1, Platform* plat2, int ladderLen)
+Ladder* createLadder(Platform* plat1, Platform* plat2, int ladderLen, char** arry)
 {
 	int rngStart, rngEnd = 0;
 	int plat1x, plat2x;
@@ -116,50 +129,58 @@ Ladder* createLadder(Platform* plat1, Platform* plat2, int ladderLen)
 	Position ladderPos(ladderX, plat1->getPosition().getY() - 1);
 	Ladder* ladder = new Ladder(ladderPos, 'H', ladderLen);
 
+	int ladderY = ladderPos.getY();
+	for (int i = 0; i < ladderLen; i++)
+	{
+		arry[ladderY-i][ladderX] = 'H';
+	}
+
 	return ladder;
 }
 
-Ladder** createLadders(Platform**& platforms, int platformsNum, int platformSpacing)
+Ladder** createLadders(Platform**& platforms, int platformsNum, int platformSpacing, char** arry)
 {
 	Ladder** laddersList = new Ladder * [platformsNum - 1];
 
 	for (int i = 0; i < platformsNum - 1; i++)
 	{
-		laddersList[i] = createLadder(platforms[i], platforms[i + 1], platformSpacing - 1);
-		laddersList[i]->printObj();
+		laddersList[i] = createLadder(platforms[i], platforms[i + 1], platformSpacing - 1, arry);
+		//laddersList[i]->printObj();
 	}
 	return laddersList;
 }
 
 
-StaticObj* createPauilne(Position lastPlatPos, int lastPlatLen)
+StaticObj* createPauilne(Position lastPlatPos, int lastPlatLen, char** arr)
 {
 
 	int paulineXmin, paulineY, paulineX;
 	paulineXmin = lastPlatPos.getX() + lastPlatLen - (lastPlatLen / 2);
-	paulineY = lastPlatPos.getY();
+	paulineY = lastPlatPos.getY() - 1;
 	paulineX = randomInt(paulineXmin, paulineXmin + (lastPlatLen / 2));
 
-	Position paulinePos(paulineX, paulineY - 1);
+	Position paulinePos(paulineX, paulineY);
 	StaticObj* pauline = new StaticObj(paulinePos, 'P');
 	gotoxy(pauline->getPosition());
-	pauline->printObj();
+	//pauline->printObj();
+	arr[paulineY][paulineX] = 'P';
 
 	return pauline;
 }
 
-DonkeyKong* createDonkeyKong(Position lastPlatPos, int lastPlatLen)
+DonkeyKong* createDonkeyKong(Position lastPlatPos, int lastPlatLen, char** arr)
 {
 
 	int donkeyXmax, donkeyY, donkeyX;
 	donkeyXmax = (lastPlatPos.getX() + lastPlatLen) / 2;
-	donkeyY = lastPlatPos.getY();
+	donkeyY = lastPlatPos.getY() - 1;
 	donkeyX = randomInt(lastPlatPos.getX(), donkeyXmax);
 
-	Position donkeyKongPos(donkeyX, donkeyY - 1);
+	Position donkeyKongPos(donkeyX, donkeyY);
 
 	DonkeyKong* donkeyKong = new DonkeyKong(donkeyKongPos, 'D');
 	gotoxy(donkeyKong->getPosition());
-	donkeyKong->printObj();
+	//donkeyKong->printObj();
+	arr[donkeyY][donkeyX] = 'D';
 	return donkeyKong;
 }

@@ -16,10 +16,12 @@ void Ladder::setHeight(int _height) { height = _height; };
 
 void Ladder::printObj()
 {
+	int x, y;
+	x = pos.getX();
+	y = pos.getY();
 	for (int i = 0; i < height; i++)
 	{
-		Position toPrint(pos.getX(), pos.getY() - i);
-		gotoxy(toPrint);
+		gotoxy(x, y - i);
 		std::cout << symbol;
 	}
 }
