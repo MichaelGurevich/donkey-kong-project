@@ -133,6 +133,8 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Ladder.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mario.cpp" />
+    <ClCompile Include="MovingObj.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="StaticObj.cpp" />
@@ -141,9 +143,12 @@
   <ItemGroup>
     <ClInclude Include="Board.h" />
     <ClInclude Include="createGameAssests.h" />
+    <ClInclude Include="Direction.h" />
     <ClInclude Include="DonkeyKong.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Ladder.h" />
+    <ClInclude Include="Mario.h" />
+    <ClInclude Include="MovingObj.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="StaticObj.h" />

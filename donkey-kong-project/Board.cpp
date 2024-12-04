@@ -26,10 +26,23 @@ void printBoard(int height, int width, int platformNum, int platformSpacing, cha
 	StaticObj* pauline = createPauilne(platformsList[platformNum - 1]->getPosition(), platformsList[platformNum - 1]->getLen(), arr);
 }
 
+char Board::getChar(Position p)
+{
+	int x, y;
+	x = p.getX();
+	y = p.getY();
+	return array[y][x];
+}
+
 Board::Board(int _height, int _width, int platformNum, int platformSpacing) 
 {
 	height = _height;
 	width = _width;
 	array = createEmptyAssetsArray(height, width);
 	printBoard(height, width, platformNum, platformSpacing, array);
+}
+
+char Board::getHeight()
+{
+	return height;
 }

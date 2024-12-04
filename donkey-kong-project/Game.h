@@ -1,7 +1,7 @@
 #pragma once
 #include "StaticObj.h"
 #include "Board.h"
-
+#include "Mario.h"
 
 class Game
 {
@@ -10,6 +10,8 @@ class Game
 	int width;
 	int maxLevel;
 	int platformSpacing;
+
+	Mario *mario;
 	
 
 public:

@@ -12,11 +12,7 @@ Platform* createPlatform(int platformY, int platformMaxLen, char* arr) {
 	Position platPos(platformX, platformY);
 	Platform* plat = new Platform(platPos, '=', platformLen);
 
-
-	for (int i = platformX; i < platformX + platformLen; i++) {
-		arr[i] = '=';
-	}
-	//std::fill(arr + platformX, arr + platformLen, '=');
+	std::fill(arr + platformX, arr + platformX + platformLen, '=');
 
 
 	return plat;
@@ -42,10 +38,8 @@ Platform* createPlatform(int platformY, int dir, int platformMaxLen, int randomP
 	Position platPos(platformX, platformY);
 	Platform* plat = new Platform(platPos, symbol, platformLen);
 
-	for (int i = platformX; i < platformX + platformLen; i++) {
-		arr[i] = symbol;
-	}
-	// std::fill(arr + platformX, arr + platformLen, symbol);
+	
+	std::fill(arr + platformX, arr + platformX + platformLen, symbol);
 
 	return plat;
 }
@@ -107,7 +101,7 @@ Platform** createPlatforms(int height, int platformsNum, int platformMaxLen, int
 		}
 		platforms[i] = plat;
 		gotoxy(plat->getPosition());
-		//plat->printObj(plat->getLen());
+		plat->printObj(plat->getLen());
 	}
 
 	return platforms;
@@ -145,7 +139,7 @@ Ladder** createLadders(Platform**& platforms, int platformsNum, int platformSpac
 	for (int i = 0; i < platformsNum - 1; i++)
 	{
 		laddersList[i] = createLadder(platforms[i], platforms[i + 1], platformSpacing - 1, arry);
-		//laddersList[i]->printObj();
+		laddersList[i]->printObj();
 	}
 	return laddersList;
 }
@@ -162,7 +156,7 @@ StaticObj* createPauilne(Position lastPlatPos, int lastPlatLen, char** arr)
 	Position paulinePos(paulineX, paulineY);
 	StaticObj* pauline = new StaticObj(paulinePos, 'P');
 	gotoxy(pauline->getPosition());
-	//pauline->printObj();
+	pauline->printObj();
 	arr[paulineY][paulineX] = 'P';
 
 	return pauline;
@@ -180,7 +174,7 @@ DonkeyKong* createDonkeyKong(Position lastPlatPos, int lastPlatLen, char** arr)
 
 	DonkeyKong* donkeyKong = new DonkeyKong(donkeyKongPos, 'D');
 	gotoxy(donkeyKong->getPosition());
-	//donkeyKong->printObj();
+	donkeyKong->printObj();
 	arr[donkeyY][donkeyX] = 'D';
 	return donkeyKong;
 }

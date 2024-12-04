@@ -37,15 +37,15 @@ const std::string clearCanvas =
 
 
 
-
 Game::Game(int _height, int _width, int _maxLevel, int _platformSpacing)
 {
 	height = _height;
 	width = _width;
 	maxLevel = _maxLevel;
 	platformSpacing = _platformSpacing;
+	board = new Board(height, width, maxLevel, platformSpacing);
+	mario = new Mario(*board);
 
-	
 }
 
 void clearInputBuffer() {
@@ -57,32 +57,37 @@ void clearInputBuffer() {
 
 void Game::start()
 {
-
-
-	board = new Board(height, width, 5, platformSpacing);
-	for (int i = 0; i < height; i++)
-	{
-		for (int j = 0; j < width; j++)
+		mario->draw();
+		char key = 'e';	/////////////////////////////////////just for now
+		while (key != 27) // esc
 		{
-			gotoxy(j, i);
-			std::cout << board->array[i][j];
-		}
-		
-	}
+			/*
+			for (int i = 0; i < 5; i++)
+			{
+				barrels[i]->draw();
+			}
+			*/
 
-	while (!_kbhit())
-	{
-		Sleep(500);
-	}
-	/*for (int i = 2; i <= 6; i++)
-	{
-		board = new Board(height, width, i, platformSpacing);
- 		while (!_kbhit())
-		{
-			Sleep(500);
+			Sleep(50);
+			if (_kbhit())
+			{
+				key = _getch();
+				if (mario->changeDir(key) == 1)
+				{
+					key = 27;
+				}
+			}
+			else
+			{
+				if (mario->move() == 1)
+				{
+					key = 27;
+				}
+			}
 		}
-		clearInputBuffer();
-		gotoxy(0, 0);
-		std::cout << clearCanvas;
-	}*/
+
+		//clearInputBuffer();
+		//gotoxy(0, 0);
+		//std::cout << clearCanvas;
+	
 }
